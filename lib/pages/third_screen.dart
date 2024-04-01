@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getxcounter/service/main_controller.dart';
 
 class ThirdScreen extends StatefulWidget {
   const ThirdScreen({super.key});
@@ -8,18 +10,20 @@ class ThirdScreen extends StatefulWidget {
 }
 
 class _ThirdScreenState extends State<ThirdScreen> {
-  int _count = 0;
+  final mainController = Get.put(MainController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple[200],
+      //backgroundColor: Colors.deepPurple[200],
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "The Count 3 of the Number is  $_count",
-            style: TextStyle(fontSize: 20),
+          Obx(
+            () => Text(
+              "The Count 1 of the Number is  ${mainController.count}",
+              style: TextStyle(fontSize: 20),
+            ),
           ),
           SizedBox(
             height: 20,
@@ -27,14 +31,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
           ElevatedButton(
             child: Icon(Icons.add),
             onPressed: () {
-              setState(() {
-                _count++;
-              });
-            },
-            onLongPress: () {
-              setState(() {
-                _count = 0;
-              });
+              mainController.myIncrement();
             },
           )
         ],

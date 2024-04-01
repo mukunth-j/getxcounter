@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getxcounter/service/main_controller.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
@@ -8,33 +10,28 @@ class SecondScreen extends StatefulWidget {
 }
 
 class _SecondScreenState extends State<SecondScreen> {
-  int _count = 0;
+  final mainController = Get.put(MainController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple[200],
+      //backgroundColor: Colors.deepPurple[200],
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "The Count 2 of the Number is  $_count",
-            style: TextStyle(fontSize: 20),
+          Obx(
+            () => Text(
+              "The Count 1 of the Number is  ${mainController.count}",
+              style: TextStyle(fontSize: 20),
+            ),
           ),
           SizedBox(
             height: 20,
           ),
           ElevatedButton(
-            child: Icon(Icons.add),
+            child: Icon(Icons.remove),
             onPressed: () {
-              setState(() {
-                _count++;
-              });
-            },
-            onLongPress: () {
-              setState(() {
-                _count = 0;
-              });
+              mainController.myDecrement();
             },
           )
         ],
