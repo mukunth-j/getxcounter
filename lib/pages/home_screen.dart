@@ -35,7 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         backgroundColor: Colors.deepPurple,
       ),
-      //body: _pages.elementAt(_selectedIndex),
+      // -> Tis is for no state management
+      // body: _pages.elementAt(_selectedIndex),
       body: IndexedStack(
         index: _selectedIndex,
         children: _pages,
